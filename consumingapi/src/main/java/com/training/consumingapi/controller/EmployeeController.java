@@ -43,7 +43,7 @@ public class EmployeeController {
 	 * static Timestamp t;
 	 */
 	@GetMapping("/allemployees")
-	@Scheduled(fixedRate = 5000)
+	//@Scheduled(fixedRate = 5000)
 	public List<Employee> getEmployees() {
 		return employeeService.getEmployees();
 		
@@ -55,8 +55,8 @@ public class EmployeeController {
 		return employeeService.getById(id);
 	}
 	
-	@GetMapping("/emp/latest/{t}")
-	@Scheduled(cron= "${cronexpression}")
+	//@GetMapping("/emp/latest/{t}")
+	//@Scheduled(cron= "${cronexpression}")
 	public List<Employee> getLastUpdatedRecords(@PathVariable Timestamp t) {
 		return employeeService.getLastUpdatedRecords(t);
 	}
