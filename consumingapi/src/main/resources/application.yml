@@ -7,7 +7,8 @@ spring.datasource:
 spring.jpa.hibernate.ddl-auto: update
 
 spring.jpa.properties.hibernate.format_sql: true
-logging.level.org.springframework.web: DEBUG
+logging.level.org.springframework.web: WARN
 server.port: 8081
 
 apiUrl.employee: http://localhost:8082/employees
+cronexpression: '*/5  * * * *'

@@ -1,5 +1,6 @@
 package com.training.employeeinfo1.service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +21,13 @@ public class EmployeeService {
 		List<Employee> employees = new ArrayList<>();
 		employeeRepository.findAll().forEach(employees::add);
 		return employees;
+	}
+	
+	public List<Employee> getLastModifiedRecords(Timestamp t) {
+		List<Employee> records = new ArrayList<>();
+		employeeRepository.findByLastModifiedAfter(t).forEach(records::add);
+		System.out.println("Number of records processed  :  " + records.size());
+		return records;
 	}
 
 	public Optional<Employee> getEmployee(Integer id) {

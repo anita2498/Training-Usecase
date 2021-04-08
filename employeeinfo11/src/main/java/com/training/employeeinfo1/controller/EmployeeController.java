@@ -1,6 +1,7 @@
 package com.training.employeeinfo1.controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.training.employeeinfo1.model.Employee;
@@ -29,6 +31,11 @@ public class EmployeeController {
 	@GetMapping("/employees")
 	public List<Employee> getAllEmployees() {
 		return employeeService.getAllEmployees();
+	}
+	
+	@GetMapping("/employees/latest/{t}")
+	public List<Employee> getLastModifiedRecords(@PathVariable String t) {
+		return employeeService.getLastModifiedRecords(Timestamp.valueOf(t));
 	}
 
 	@GetMapping("/employees/{id}")
