@@ -1,4 +1,4 @@
-package com.training.restapi;
+package com.training.consumingapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,6 +8,6 @@ class RestapiApplicationTests {
 
 	@Test
 	void contextLoads() {
-	}
 
+	}
 }

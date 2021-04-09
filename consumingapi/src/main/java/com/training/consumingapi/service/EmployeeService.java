@@ -34,7 +34,7 @@ public class EmployeeService {
 				});
 		Date date = new Date();
 		tn = new Timestamp((long) date.getTime());
-		t= new Timestamp((long) date.getTime() - 60000);
+		t= new Timestamp((long) date.getTime() - (5*60000));
 		System.out.println("Job Triggered : " + tn + "  No of records processed since " + t + " : " + getLastUpdatedRecords(t).size());
 		return employeeList;
 	}
@@ -50,11 +50,9 @@ public class EmployeeService {
 		List<Employee> updatedRecords = new ObjectMapper().convertValue(
 				restTemplate.getForObject(getLastUpdatedUrl, List.class), new TypeReference<List<Employee>>() {
 				});
-		// Date date = new Date();
-		// long time = date.getTime();
-		// t = new Timestamp((long)date.getTime());
-		// System.out.println(t);
 		return updatedRecords;
 	}
+	
+	
 
 }
