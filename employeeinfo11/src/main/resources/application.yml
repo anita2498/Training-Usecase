@@ -6,7 +6,7 @@ spring.datasource:
 spring.jpa.hibernate.ddl-auto: update
 
 spring.jpa.properties.hibernate.format_sql: true
-logging.level.org.springframework.web: WARN
+logging.level.org.springframework.web: INFO
 
 #server.error.whitelabel.enabled: false
 #server.error.path: /error
