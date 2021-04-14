@@ -62,9 +62,9 @@ public class EmployeeRepositoryTests {
 		//Timestamp t = Timestamp.valueOf(System.currentTimeMillis());
 		employee = new Employee(1, "Elon", "Musk", "dev", "abcd", new Date(2000, 12, 11) );
 		service.addEmployee(employee);
-		employee.setDateCreated(service.getEmployee(1).get().getDateCreated());
-		employee.setLastModified(service.getEmployee(1).get().getLastModified());
-		assertEquals(employee, service.getEmployee(1).get());
+		employee.setDateCreated(service.getEmployee(1).getDateCreated());
+		employee.setLastModified(service.getEmployee(1).getLastModified());
+		assertEquals(employee, service.getEmployee(1));
 	}
 
 	
@@ -85,8 +85,8 @@ public class EmployeeRepositoryTests {
 		int id = 2;
 		service.updateEmployee(employee, id);
 		System.out.println(employee);
-		//System.out.println("   /////// " + service.getEmployee(id).get());
-		assertEquals(employee, service.getEmployee(id).get());
+		//System.out.println("   /////// " + service.getEmployee(id));
+		assertEquals(employee, service.getEmployee(id));
 	}
 	
 	
@@ -97,9 +97,9 @@ public class EmployeeRepositoryTests {
 	public void testGetEmployee() {
 		employee = new Employee(3, "Elon", "Musk", "dev", "abcd", new Date(2000, 12, 11));
 		service.addEmployee(employee);
-		employee.setDateCreated(service.getEmployee(3).get().getDateCreated());
-		employee.setLastModified(service.getEmployee(3).get().getLastModified());
-		assertEquals(employee, service.getEmployee(3).get());
+		employee.setDateCreated(service.getEmployee(3).getDateCreated());
+		employee.setLastModified(service.getEmployee(3).getLastModified());
+		assertEquals(employee, service.getEmployee(3));
 	}
 	
 	@SuppressWarnings({ "deprecation" })
@@ -110,7 +110,7 @@ public class EmployeeRepositoryTests {
 		employee = new Employee(4, "Elon", "Musk", "dev", "abcd", new Date(2000, 12, 11));
 		service.addEmployee(employee);
 		service.deleteEmployee(4);
-		assertFalse(service.getEmployee(4).isPresent());
+		assertFalse(service.getEmployee(4).equals(null));
 	}
 	 
 

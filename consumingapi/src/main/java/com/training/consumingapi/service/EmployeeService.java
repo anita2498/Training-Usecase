@@ -24,30 +24,36 @@ public class EmployeeService {
 	@Value("${apiUrl.employee}")
 	private String url;
 
-	static Timestamp t,tn;
+	static Timestamp t, tn;
 
-	@Scheduled(cron = "${cronexpression}")
+	@Scheduled(cron = "${cron.expression}")
 	public List<Employee> getEmployees() {
 		String getAllUrl = url;
 		List<Employee> employeeList = new ObjectMapper().convertValue(restTemplate.getForObject(getAllUrl, List.class),
 				new TypeReference<List<Employee>>() {
 				});
+
 		Date date = new Date();
 		tn = new Timestamp((long) date.getTime());
-		t= new Timestamp((long) date.getTime() - (5*60000));
-		System.out.println("Job Triggered : " + tn + "  No of records processed since " + t + " : " + getLastUpdatedRecords(t).size());
+		t = new Timestamp((long) date.getTime() - (5 * 60000));
+		System.out.println("Job Triggered : " + tn + "  No of records processed since " + t + " : "
+				+ getLastUpdatedRecords(t).size());
+
 		return employeeList;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 
-	
+	// @Scheduled(cron = "${cron.expression}")
+	/*
+	 * public List<Employee> getJobDetails() { String getLastUpdatedUrl = url +
+	 * "/latest/" + t; List<Employee> updatedRecords = new
+	 * ObjectMapper().convertValue( restTemplate.getForObject(getLastUpdatedUrl,
+	 * List.class), new TypeReference<List<Employee>>() { }); Date date = new
+	 * Date(); tn = new Timestamp((long) date.getTime()); t= new Timestamp((long)
+	 * date.getTime() - (5*60000)); System.out.println("Job Triggered : " + tn +
+	 * "  No of records processed since " + t + " : " +
+	 * getLastUpdatedRecords(t).size()); return updatedRecords; }
+	 */
+
 	public Employee getById(Integer id) {
 		String getUrl = url + "/" + id;
 		return restTemplate.getForObject(getUrl, Employee.class);
@@ -60,7 +66,5 @@ public class EmployeeService {
 				});
 		return updatedRecords;
 	}
-	
-	
 
 }
