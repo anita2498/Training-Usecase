@@ -1,23 +1,26 @@
 package com.training.employeeinfo1.model;
 
-import javax.persistence.Entity;
+import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+public class User implements Serializable {
 
-@Data
-@NoArgsConstructor
-@Entity
-public class User {
-	
+	public User()
+
+	{
+
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	@Column(name = "username")
 	private String username;
+	@Column(name = "password")
 	private String password;
-	private String roles;
 
 }
