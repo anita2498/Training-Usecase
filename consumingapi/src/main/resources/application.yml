@@ -11,5 +11,5 @@ logging.level.org.springframework.web: WARN
 server.port: 8081
 
 apiUrl.employee: http://localhost:8082/employees
-cron.expression: '0 */5 * ? * *'
+cron.expression: '0 */2 * ? * *'
 

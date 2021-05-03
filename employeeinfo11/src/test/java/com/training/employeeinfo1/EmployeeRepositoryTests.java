@@ -3,6 +3,7 @@ package com.training.employeeinfo1;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -21,7 +22,9 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.web.client.HttpClientErrorException;
 
 import com.training.employeeinfo1.model.Employee;
 import com.training.employeeinfo1.repository.EmployeeRepository;
@@ -110,7 +113,14 @@ public class EmployeeRepositoryTests {
 		employee = new Employee(4, "Elon", "Musk", "dev", "abcd", new Date(2000, 12, 11));
 		service.addEmployee(employee);
 		service.deleteEmployee(4);
-		assertFalse(service.getEmployee(4).equals(null));
+		assertThat(employee).as("Employee Id not found!"); 
+		
+		/*
+		 * try { assertFalse(service.getEmployee(4).equals(null)); } catch (final
+		 * HttpClientErrorException e) { assertEquals(e.getStatusCode(),
+		 * HttpStatus.NOT_FOUND); }
+		 */
+		
 	}
 	 
 

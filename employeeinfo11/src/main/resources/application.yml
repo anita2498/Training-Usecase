@@ -14,5 +14,14 @@ logging.level.org.springframework.web: INFO
 spring.profiles.active: test
 server.port: 8082
 allowedUrls: http://localhost:8081
-jwt:
-  secret: secret
+#jwt.secret: secret
+
+edp.app-security:
+  user:
+    secret: "usecret"
+    userName: "ufoo"
+  admin:
+    secret: "asecret"
+    userName: "afoo"
+    
+ 
